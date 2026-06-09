@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { X, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -11,6 +12,32 @@ interface ProjectSidebarProps {
 }
 
 export function ProjectSidebar({ isOpen, onClose }: ProjectSidebarProps) {
+  // Handle Escape key to close sidebar
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [isOpen, onClose]);
+
+  // Handle overlay keyboard accessibility
+  const handleOverlayKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onClose();
+    }
+  };
+
+  const handleNewProject = () => {
+    // TODO: Wire to actual project creation dialog/modal
+  };
+
   return (
     <>
       {/* Overlay */}
@@ -18,7 +45,10 @@ export function ProjectSidebar({ isOpen, onClose }: ProjectSidebarProps) {
         <div
           className="fixed inset-0 z-40 bg-black/20"
           onClick={onClose}
-          aria-hidden="true"
+          onKeyDown={handleOverlayKeyDown}
+          role="button"
+          tabIndex={0}
+          aria-label="Close sidebar"
         />
       )}
 
@@ -79,7 +109,7 @@ export function ProjectSidebar({ isOpen, onClose }: ProjectSidebarProps) {
 
         {/* New Project Button */}
         <div className="px-4 py-4 border-t border-neutral-800">
-          <Button className="w-full" variant="default">
+          <Button className="w-full" variant="default" onClick={handleNewProject}>
             <Plus className="h-4 w-4 mr-2" />
             New Project
           </Button>

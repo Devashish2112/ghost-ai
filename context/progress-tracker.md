@@ -20,6 +20,8 @@ Update this file whenever the current phase, active feature, or implementation s
 - Build test passed successfully
 - Created `components/editor/editor-navbar.tsx` with sidebar toggle button and navigation sections
 - Created `components/editor/project-sidebar.tsx` with tabs, empty placeholder states, and New Project button
+- Integrated EditorNavbar and ProjectSidebar into editor layout page (`app/editor/page.tsx`)
+- Added keyboard accessibility: Escape key listener and overlay keyboard navigation
 - Verified components compile without TypeScript errors
 - Verified no lint errors
 
@@ -29,9 +31,9 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Next Up
 
-- Integrate EditorNavbar and ProjectSidebar into an editor layout page
 - Build canvas editor component for designing
 - Add project creation and management features
+- Implement dialog pattern for project creation/editing
 
 ## Open Questions
 
