@@ -1,9 +1,22 @@
-import { Button } from "@/components/ui/button";
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@clerk/nextjs";
 
 export default function Home() {
-  return (
-    <div className="flex items-center justify-center w-full h-screen">
-      <div>Ghost AI</div>
-    </div>
-  );
+  const router = useRouter();
+  const { isLoaded, isSignedIn } = useAuth();
+
+  useEffect(() => {
+    if (!isLoaded) return;
+
+    if (isSignedIn) {
+      router.push("/editor");
+    } else {
+      router.push("/sign-in");
+    }
+  }, [isLoaded, isSignedIn, router]);
+
+  return null;
 }
