@@ -18,6 +18,10 @@ Update this file whenever the current phase, active feature, or implementation s
 - Installed lucide-react for icons
 - Verified dark theme in global.css (oklch color system)
 - Build test passed successfully
+- Created `components/editor/editor-navbar.tsx` with sidebar toggle button and navigation sections
+- Created `components/editor/project-sidebar.tsx` with tabs, empty placeholder states, and New Project button
+- Verified components compile without TypeScript errors
+- Verified no lint errors
 
 ## In Progress
 
@@ -25,11 +29,13 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Next Up
 
-- Start building UI features using the design system components
+- Integrate EditorNavbar and ProjectSidebar into an editor layout page
+- Build canvas editor component for designing
+- Add project creation and management features
 
 ## Open Questions
 
-- Do you want me to run `npm install` to actually install dependencies, or only update `package.json`?
+- None
 
 ## Architecture Decisions
 
